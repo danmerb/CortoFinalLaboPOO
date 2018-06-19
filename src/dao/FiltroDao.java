@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class FiltroDao implements metodos<Filtro>{
     
-    private static final String SQL_INSERT = "INSERT INTO alumnos (carnet,nombre,apellido,edad, universidad, estado) VALUES (?,?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE alumnos SET nombre = ?, apellido = ?, edad = ?, universidad = ?,estrado = ? WHERE carnet = ?";
+    private static final String SQL_INSERT = "INSERT INTO alumnos (carnet,nombres,apellidos,edad, universidad, estado) VALUES (?,?,?,?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE alumnos SET nombres = ?, apellidos = ?, edad = ?, universidad = ?,estrado = ? WHERE carnet = ?";
     private static final String SQL_DELETE = "DELETE FROM alumnos WHERE carnet = ?";
     private static final String SQL_READ = "SELECT * FROM alumnos";
     private static final String SQL_READALL = "SELECT * FROM alumnos";
