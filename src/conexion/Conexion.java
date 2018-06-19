@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package conexion;
 
 import java.sql.Connection;
@@ -45,9 +41,9 @@ public class Conexion {
     
     private void cargarCredenciales() {
         user = "root";
-        pass = "";//poner contrasena y ese user y pass que se usara para XAMP
+        pass = "";
         driver = "com.mysql.jdbc.Driver";
-        url = "jdbc:mysql://localhost/filtros";
+        url = "jdbc:mysql://localhost/Inscripciones";
     }
     
     public Connection getCnx(){
@@ -56,9 +52,4 @@ public class Conexion {
     
     public void cerrarConexion(){
         instance = null;
-    }
-
-//    public Object getCnx() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-}
+    }}
