@@ -5,6 +5,8 @@
  */
 package Inscripcion;
 
+import vista.Consulta;
+
 /**
  *
  * @author Jeniffer Merino<<https://github.com/danmerb>>
@@ -15,7 +17,7 @@ public class Inscripcion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       new Consulta().setVisible(true);
     }
     
 }

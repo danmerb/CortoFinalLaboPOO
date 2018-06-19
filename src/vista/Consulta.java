@@ -41,7 +41,7 @@ public class Consulta extends JFrame {
 
     public JButton buscar, eliminar, insertar, limpiar, actualizar;
     
-    private static final int ANCHOC = 130, ALTOC = 30;
+    private static final int ANCHOC = 150, ALTOC = 25;
 
     DefaultTableModel tm;
 
@@ -78,15 +78,17 @@ public class Consulta extends JFrame {
     }
 
     private void agregarLabels() {
+        
         lblCarnet= new JLabel("Carnet");
         lblNombre = new JLabel("Nombre");
         lblApellido = new JLabel("Apellido");
         lblEdad= new JLabel("Edad");
+        lblUniversidad=new JLabel("Universidad");
         lblEstado = new JLabel("Estado de Inscripcion");
         lblCarnet.setBounds(10, 10, ANCHOC, ALTOC);
-        lblNombre.setBounds(10, 60, ANCHOC, ALTOC);
-        lblApellido.setBounds(100, 60, ANCHOC, ALTOC);
-        lblEdad.setBounds(10, 100, ANCHOC, ALTOC);
+        lblNombre.setBounds(20, 45, ANCHOC, ALTOC);
+        lblApellido.setBounds(120, 45, ANCHOC, ALTOC);
+        lblEdad.setBounds(10, 100, 75, ALTOC);
         lblUniversidad.setBounds(10, 140, ANCHOC, ALTOC);
         lblEstado.setBounds(10, 180, ANCHOC, ALTOC);
     }
@@ -118,14 +120,14 @@ public class Consulta extends JFrame {
         estado.add(no);
         //-------------------------------------------
         carnet.setBounds(140, 10, ANCHOC, ALTOC);
-        nombre.setBounds(140, 30, ANCHOC, ALTOC);
-        apellido.setBounds(140, 60, ANCHOC, ALTOC);
-        universidad.setBounds(140, 80, ANCHOC, ALTOC);
-        edad.setBounds(140, 100, ANCHOC, ALTOC);
-        si.setBounds(140, 140, 50, ALTOC);
-        no.setBounds(210, 140, 50, ALTOC);
+        nombre.setBounds(20,70, ANCHOC, ALTOC);
+        apellido.setBounds(200, 70, ANCHOC, ALTOC);
+        universidad.setBounds(140, 140, ANCHOC, ALTOC);
+        edad.setBounds(140, 100, 75, ALTOC);
+        si.setBounds(140, 180, 50, ALTOC);
+        no.setBounds(210, 182, 50, ALTOC);
 
-        buscar.setBounds(300, 10, ANCHOC, ALTOC);
+        buscar.setBounds(300, 10, 75, ALTOC);
         insertar.setBounds(10, 210, ANCHOC, ALTOC);
         actualizar.setBounds(150, 210, ANCHOC, ALTOC);
         eliminar.setBounds(300, 210, ANCHOC, ALTOC);
@@ -272,6 +274,15 @@ public class Consulta extends JFrame {
         universidad.setSelectedItem("UCA");
         
 
+    }
+    
+    public static void main(String[] args) {  
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Consulta().setVisible(true);
+            }
+        });
     }
 
 }
