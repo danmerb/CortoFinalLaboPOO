@@ -10,33 +10,41 @@ package modelo;
  * @author Jeniffer Merino<<https://github.com/danmerb>>
  */
 public class Filtro {
+
     private int id;
-    private String codigo;
-    private String marca;
-    private int stock;
-    private boolean existencia;
-    
-    public Filtro(){}
+    private String carnet;
+    private String nombre;
+    private String apellido;
+    private int edad;
+    private String universidad;
+    private boolean estado;
 
-    public Filtro(int id, String codigo, String marca, int stock, boolean existencia) {
+    public Filtro() {
+    }
+
+    public Filtro(int id, String carnet, String nombre, String apellido, int edad, String universidad, boolean estado) {
         this.id = id;
-        this.codigo = codigo;
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
-    }
-    
-    public Filtro(String codigo, String marca, int stock, boolean existencia) {
-        this.codigo = codigo;
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
+        this.carnet = carnet;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.universidad = universidad;
+        this.estado = estado;
     }
 
-    public Filtro(String marca, int stock, boolean existencia) {
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
+    public Filtro(String carnet, String nombre, String apellido, int edad,String universidad, boolean estado) {
+        this.carnet = carnet;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.universidad = universidad;
+        this.estado = estado;
+    }
+
+    public Filtro(int id, String carnet, String universidad, boolean estado) {
+        this.carnet = carnet;
+        this.universidad = universidad;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -47,49 +55,56 @@ public class Filtro {
         this.id = id;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCarnet() {
+        return carnet;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCarnet(String carnet) {
+        this.carnet = carnet;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public int getStock() {
-        return stock;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public boolean isExistencia() {
-        return existencia;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setExistencia(boolean existencia) {
-        this.existencia = existencia;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
-    /**
-     * Al generar los Setters y Getters automaticamente, no me generaba el de getExistencia 
-     * es cual se usa en las clases FilstroDao.java y Consulta.java
-     * y el (return existencia;) dentro del getExistencia(){ 
-     * lo tuve que hacer manualmente
-     * @return 
-     */
-    public boolean getExistencia() {
-        return existencia;
+
+    public String getUniversidad() {
+        return universidad;
     }
-    
-    
-    
-    
+
+    public void setUniversidad(String universidad) {
+        this.universidad = universidad;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    public boolean getEstado() {
+        return estado;
+    }
+
+
 }

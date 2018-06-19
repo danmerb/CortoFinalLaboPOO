@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inventario;
+package Inscripcion;
 
 /**
  *
  * @author Jeniffer Merino<<https://github.com/danmerb>>
  */
-public class Inventario {
+public class Inscripcion {
 
     /**
      * @param args the command line arguments

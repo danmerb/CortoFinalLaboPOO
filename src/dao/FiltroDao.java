@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dao;
 
 import conexion.Conexion;
@@ -21,11 +17,11 @@ import java.util.logging.Logger;
  */
 public class FiltroDao implements metodos<Filtro>{
     
-    private static final String SQL_INSERT = "INSERT INTO filtros_aceite (codFiltro,marca,stock,existecia) VALUES (?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE filtros_aceite SET marca = ?, stock = ?, existencia = ? WHERE codFiltro = ?";
-    private static final String SQL_DELETE = "DELETE FROM filtros_aceite WHERE codFiltro = ?";
-    private static final String SQL_READ = "SELECT * FROM filtros_aceite";
-    private static final String SQL_READALL = "SELECT * FROM filtros_aceite";
+    private static final String SQL_INSERT = "INSERT INTO alumnos (carnet,nombre,apellido,edad, universidad, estado) VALUES (?,?,?,?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE alumnos SET nombre = ?, apellido = ?, edad = ?, universidad = ?,estrado = ? WHERE carnet = ?";
+    private static final String SQL_DELETE = "DELETE FROM alumnos WHERE carnet = ?";
+    private static final String SQL_READ = "SELECT * FROM alumnos";
+    private static final String SQL_READALL = "SELECT * FROM alumnos";
     private static final Conexion con = Conexion.conectar();
 
     @Override
@@ -33,10 +29,12 @@ public class FiltroDao implements metodos<Filtro>{
         PreparedStatement ps;
         try {
             ps = con.getCnx().prepareStatement(SQL_INSERT);
-            ps.setString(1, g.getCodigo());
-            ps.setString(2, g.getMarca());
-            ps.setInt(3, g.getStock());
-            ps.setBoolean(4, true);
+            ps.setString(1, g.getCarnet());
+            ps.setString(2, g.getNombre());
+            ps.setString(3, g.getApellido());
+            ps.setInt(4, g.getEdad());
+            ps.setString(5, g.getUniversidad());
+            ps.setBoolean(6, true);
             if (ps.executeUpdate() > 0){
                 return true;
             }
@@ -71,12 +69,14 @@ public class FiltroDao implements metodos<Filtro>{
     public boolean update(Filtro c) {
         PreparedStatement ps;
         try {
-            System.out.println(c.getCodigo());
+            System.out.println(c.getCarnet());
             ps = con.getCnx().prepareStatement(SQL_UPDATE);
-            ps.setString(1, c.getMarca());
-            ps.setInt(2, c.getStock());
-            ps.setBoolean(3, c.getExistencia());
-            ps.setString(4, c.getCodigo());
+            ps.setString(1, c.getCarnet());
+            ps.setString(2, c.getNombre());
+            ps.setString(3, c.getApellido());
+            ps.setInt(4, c.getEdad());
+            ps.setString(5, c.getUniversidad());
+            ps.setBoolean(6, c.getEstado());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -101,7 +101,7 @@ public class FiltroDao implements metodos<Filtro>{
             rs = ps.executeQuery();
             
             while(rs.next()) {
-                f = new Filtro(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getInt(4), rs.getBoolean(5));
+                f = new Filtro(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4), rs.getInt(5),rs.getString(6), rs.getBoolean(6));
             }
             rs.close();
         } catch (SQLException ex) {
@@ -122,7 +122,7 @@ public class FiltroDao implements metodos<Filtro>{
             s = con.getCnx().prepareStatement(SQL_READALL);
             rs = s.executeQuery(SQL_READALL);
             while(rs.next()){
-                all.add(new Filtro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5)));
+                all.add( new Filtro(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4), rs.getInt(5),rs.getString(6), rs.getBoolean(6)));
             }
             rs.close();
         } catch (SQLException ex) {
