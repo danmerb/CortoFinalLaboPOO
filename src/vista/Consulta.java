@@ -123,7 +123,7 @@ public class Consulta extends JFrame {
         nombres.setBounds(20,70, ANCHOC, ALTOC);
         apellidos.setBounds(200, 70, ANCHOC, ALTOC);
         universidad.setBounds(140, 140, ANCHOC, ALTOC);
-//        edad.setBounds(140, 100, 75, ALTOC);
+        edad.setBounds(140, 100, 75, ALTOC);
         si.setBounds(140, 180, 50, ALTOC);
         no.setBounds(210, 182, 50, ALTOC);
 

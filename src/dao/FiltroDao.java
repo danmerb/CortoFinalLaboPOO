@@ -1,4 +1,3 @@
-
 package dao;
 
 import conexion.Conexion;
@@ -14,7 +13,7 @@ import modelo.Filtro;
 
 /**
  *
- * @author LN710Q
+ * @author Jeniffer Merino<<https://github.com/danmerb>>
  */
 public class FiltroDao implements metodos<Filtro> {
 
@@ -76,8 +75,7 @@ public class FiltroDao implements metodos<Filtro> {
             ps.setString(1, c.getNombres());
             ps.setString(2, c.getApellidos());
             ps.setInt(3, c.getEdad());
-                        ps.setString(4, c.getUniversidad());
-
+            ps.setString(4, c.getUniversidad());
             ps.setBoolean(5, c.getEstado());
             ps.setString(6, c.getCarnet());
             if (ps.executeUpdate() > 0) {
@@ -104,7 +102,7 @@ public class FiltroDao implements metodos<Filtro> {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                f = new Filtro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getString(6) ,rs.getBoolean(7));
+                f = new Filtro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7));
             }
             rs.close();
         } catch (SQLException ex) {
@@ -128,7 +126,7 @@ public class FiltroDao implements metodos<Filtro> {
             rs = s.executeQuery(SQL_READALL);
 
             while (rs.next()) {
-                all.add(new Filtro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getString(6) ,rs.getBoolean(7)));
+                all.add(new Filtro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7)));
             }
             rs.close();
         } catch (SQLException ex) {
