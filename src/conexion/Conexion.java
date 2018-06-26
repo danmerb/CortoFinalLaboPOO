@@ -41,7 +41,7 @@ public class Conexion {
     
     private void cargarCredenciales() {
         user = "root";
-        pass = "";
+        pass = "root";
         driver = "com.mysql.jdbc.Driver";
         url = "jdbc:mysql://localhost/inscripciones";
     }

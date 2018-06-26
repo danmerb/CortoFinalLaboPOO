@@ -29,7 +29,7 @@ public class Consulta extends JFrame {
 
     public JLabel lblCarnet, lblNombre, lblApellido, lblEdad, lblUniversidad, lblEstado;
 
-    public JTextField carnet, nombre, apellido,edad;
+    public JTextField carnet, nombres, apellidos,edad;
     public JComboBox universidad;
 
     ButtonGroup estado = new ButtonGroup();
@@ -60,8 +60,8 @@ public class Consulta extends JFrame {
         container.add(lblUniversidad);
         container.add(lblEstado);
         container.add(carnet);
-        container.add(nombre);
-        container.add(apellido);
+        container.add(nombres);
+        container.add(apellidos);
         container.add(edad);
         container.add(universidad);
         container.add(si);
@@ -95,8 +95,8 @@ public class Consulta extends JFrame {
 
     private void formulario() {
         carnet = new JTextField();
-        nombre = new JTextField();
-        apellido = new JTextField();
+        nombres = new JTextField();
+        apellidos = new JTextField();
         edad= new JTextField();
         universidad = new JComboBox();        
         si = new JRadioButton("si", true);
@@ -120,10 +120,10 @@ public class Consulta extends JFrame {
         estado.add(no);
         //-------------------------------------------
         carnet.setBounds(140, 10, ANCHOC, ALTOC);
-        nombre.setBounds(20,70, ANCHOC, ALTOC);
-        apellido.setBounds(200, 70, ANCHOC, ALTOC);
+        nombres.setBounds(20,70, ANCHOC, ALTOC);
+        apellidos.setBounds(200, 70, ANCHOC, ALTOC);
         universidad.setBounds(140, 140, ANCHOC, ALTOC);
-        edad.setBounds(140, 100, 75, ALTOC);
+//        edad.setBounds(140, 100, 75, ALTOC);
         si.setBounds(140, 180, 50, ALTOC);
         no.setBounds(210, 182, 50, ALTOC);
 
@@ -150,9 +150,7 @@ public class Consulta extends JFrame {
                     case 2:
                         return String.class;
                     case 3:
-                        return String.class;
-                    case 4:
-                        return String.class;
+                        return String.class;                    
                     default:
                         return Boolean.class;
                 }
@@ -161,8 +159,7 @@ public class Consulta extends JFrame {
 
         tm.addColumn("Carnet");
         tm.addColumn("Nombre");
-        tm.addColumn("Apellido");
-        tm.addColumn("Edad");
+        tm.addColumn("Apellido");        
         tm.addColumn("Universidad");
         tm.addColumn("Estado de Inscripcion");
 
@@ -170,7 +167,7 @@ public class Consulta extends JFrame {
         ArrayList<Filtro> filtros = fd.readAll();
 
         for (Filtro fi : filtros) {
-            tm.addRow(new Object[]{fi.getCarnet(),fi.getNombre(), fi.getApellido(), fi.getEdad(),fi.getUniversidad(), fi.getEstado()});
+            tm.addRow(new Object[]{fi.getCarnet(),fi.getNombres(), fi.getApellidos(),fi.getUniversidad(), fi.getEstado()});
         }
 
         resultados.setModel(tm);
@@ -182,7 +179,7 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(carnet.getText(),nombre.getText(),apellido.getText(),Integer.parseInt(edad.getText()), universidad.getSelectedItem().toString(),  true);
+                Filtro f = new Filtro(carnet.getText(),nombres.getText(),apellidos.getText(), universidad.getSelectedItem().toString(),  true);
 
                 if (no.isSelected()) {
                     f.setEstado(false);
@@ -198,22 +195,22 @@ public class Consulta extends JFrame {
             }
         });
 
-        actualizar.addActionListener(new ActionListener() {
+            actualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(carnet.getText(),nombre.getText(),apellido.getText(),Integer.parseInt(edad.getText()), universidad.getSelectedItem().toString(),  true);
+                Filtro f = new Filtro(carnet.getText(),nombres.getText(), apellidos.getText(),universidad.getSelectedItem().toString(), true);
 
                 if (no.isSelected()) {
                     f.setEstado(false);
                 }
 
                 if (fd.update(f)) {
-                    JOptionPane.showMessageDialog(null, "Inscripcion modificado con éxito");
+                    JOptionPane.showMessageDialog(null, "Filtro modificado con éxito");
                     limpiarCampos();
                     llenarTabla();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de creación de la Inscripcion.");
+                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de creación de este filtro.");
                 }
             }
         });
@@ -222,7 +219,7 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(carnet.getText(),nombre.getText(),apellido.getText(), Integer.parseInt(edad.getText()), universidad.getSelectedItem().toString(), true);
+                Filtro f = new Filtro(carnet.getText(),nombres.getText(),apellidos.getText(),universidad.getSelectedItem().toString(), true);
                 if (fd.delete(carnet.getText())) {
                     JOptionPane.showMessageDialog(null, "Inscripcion eliminada con éxito");
                     limpiarCampos();
@@ -239,15 +236,13 @@ public class Consulta extends JFrame {
                 FiltroDao fd = new FiltroDao();
                 Filtro f = fd.read(carnet.getText());
                 if (f == null) {
-                    JOptionPane.showMessageDialog(null, "La inscripcion  buscada no ha sido encontrado");
+                    JOptionPane.showMessageDialog(null, "El Filtro buscado no ha sido encontrado");
                 } else {
 
                     carnet.setText(f.getCarnet());
-                    nombre.setText(f.getNombre());
-                    apellido.setText(f.getApellido());
-                    edad.setText(Integer.toString(f.getEdad()));
+                    nombres.setText(f.getNombres());
+                                        apellidos.setText(f.getApellidos());
                     universidad.setSelectedItem(f.getUniversidad());
-                    
 
                     if (f.getEstado()) {
                         si.setSelected(true);
@@ -268,8 +263,8 @@ public class Consulta extends JFrame {
 
     public void limpiarCampos() {
         carnet.setText("");
-        nombre.setText("");
-        apellido.setText("");
+        nombres.setText("");
+        apellidos.setText("");
         edad.setText("");
         universidad.setSelectedItem("UCA");
         

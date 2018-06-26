@@ -11,10 +11,10 @@ package modelo;
  */
 public class Filtro {
 
-    private int id;
+       private int id;
     private String carnet;
-    private String nombre;
-    private String apellido;
+    private String nombres;
+    private String apellidos;
     private int edad;
     private String universidad;
     private boolean estado;
@@ -22,27 +22,25 @@ public class Filtro {
     public Filtro() {
     }
 
-    public Filtro(int id, String carnet, String nombre, String apellido, int edad, String universidad, boolean estado) {
+    public Filtro(int id, String carnet, String nombres, String apellidos, int edad, String universidad, boolean estado) {
         this.id = id;
         this.carnet = carnet;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.edad = edad;
         this.universidad = universidad;
         this.estado = estado;
     }
 
-    public Filtro(String carnet, String nombre, String apellido, int edad,String universidad, boolean estado) {
+    public Filtro(String carnet, String nombres, String apellidos, String universidad, boolean estado) {
         this.carnet = carnet;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.universidad = universidad;
         this.estado = estado;
     }
 
-    public Filtro(int id, String carnet, String universidad, boolean estado) {
-        this.carnet = carnet;
+    public Filtro(String universidad, boolean estado) {
         this.universidad = universidad;
         this.estado = estado;
     }
@@ -55,6 +53,14 @@ public class Filtro {
         this.id = id;
     }
 
+    public String getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(String universidad) {
+        this.universidad = universidad;
+    }
+
     public String getCarnet() {
         return carnet;
     }
@@ -63,20 +69,20 @@ public class Filtro {
         this.carnet = carnet;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public int getEdad() {
@@ -87,24 +93,12 @@ public class Filtro {
         this.edad = edad;
     }
 
-    public String getUniversidad() {
-        return universidad;
-    }
-
-    public void setUniversidad(String universidad) {
-        this.universidad = universidad;
-    }
-
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    public boolean getEstado() {
-        return estado;
-    }
-
 
 }

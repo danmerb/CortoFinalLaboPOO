@@ -9,18 +9,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
-import modelo.Filtro;
 import java.util.logging.Logger;
+import modelo.Filtro;
+
 /**
  *
- * @author Jeniffer Merino<<https://github.com/danmerb>>
+ * @author LN710Q
  */
-public class FiltroDao implements metodos<Filtro>{
-    
-    private static final String SQL_INSERT = "INSERT INTO alumnos (carnet,nombres,apellidos,edad, universidad, estado) VALUES (?,?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE alumnos SET nombres = ?, apellidos = ?, edad = ?, universidad = ?,estado = ? WHERE carnet = ?";
+public class FiltroDao implements metodos<Filtro> {
+
+    private static final String SQL_INSERT = "INSERT INTO alumnos (carnet, nombres, apellidos, edad, universidad, estado) VALUES(?,?,?,?, ?,?)";
+    private static final String SQL_UPDATE = "UPDATE alumnos SET  nombres = ?, apellidos = ?, edad = ?, universidad = ?, estado = ? WHERE carnet = ?";
     private static final String SQL_DELETE = "DELETE FROM alumnos WHERE carnet = ?";
-    private static final String SQL_READ = "SELECT * FROM alumnos";
+    private static final String SQL_READ = "SELECT * FROM alumnos WHERE carnet = ?";
     private static final String SQL_READALL = "SELECT * FROM alumnos";
     private static final Conexion con = Conexion.conectar();
 
@@ -30,17 +31,18 @@ public class FiltroDao implements metodos<Filtro>{
         try {
             ps = con.getCnx().prepareStatement(SQL_INSERT);
             ps.setString(1, g.getCarnet());
-            ps.setString(2, g.getNombre());
-            ps.setString(3, g.getApellido());
+            ps.setString(2, g.getNombres());
+            ps.setString(3, g.getApellidos());
             ps.setInt(4, g.getEdad());
             ps.setString(5, g.getUniversidad());
             ps.setBoolean(6, true);
-            if (ps.executeUpdate() > 0){
+            if (ps.executeUpdate() > 0) {
                 return true;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             Logger.getLogger(FiltroDao.class.getName()).log(Level.SEVERE, null, ex);
+
         } finally {
             con.cerrarConexion();
         }
@@ -71,12 +73,13 @@ public class FiltroDao implements metodos<Filtro>{
         try {
             System.out.println(c.getCarnet());
             ps = con.getCnx().prepareStatement(SQL_UPDATE);
-            ps.setString(1, c.getCarnet());
-            ps.setString(2, c.getNombre());
-            ps.setString(3, c.getApellido());
-            ps.setInt(4, c.getEdad());
-            ps.setString(5, c.getUniversidad());
-            ps.setBoolean(6, c.getEstado());
+            ps.setString(1, c.getNombres());
+            ps.setString(2, c.getApellidos());
+            ps.setInt(3, c.getEdad());
+                        ps.setString(4, c.getUniversidad());
+
+            ps.setBoolean(5, c.getEstado());
+            ps.setString(6, c.getCarnet());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -94,14 +97,14 @@ public class FiltroDao implements metodos<Filtro>{
         Filtro f = null;
         PreparedStatement ps;
         ResultSet rs;
+
         try {
             ps = con.getCnx().prepareStatement(SQL_READ);
             ps.setString(1, key.toString());
-            
             rs = ps.executeQuery();
-            
-            while(rs.next()) {
-                f = new Filtro(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4), rs.getInt(5),rs.getString(6), rs.getBoolean(6));
+
+            while (rs.next()) {
+                f = new Filtro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getString(6) ,rs.getBoolean(7));
             }
             rs.close();
         } catch (SQLException ex) {
@@ -111,6 +114,7 @@ public class FiltroDao implements metodos<Filtro>{
             con.cerrarConexion();
         }
         return f;
+
     }
 
     @Override
@@ -118,18 +122,19 @@ public class FiltroDao implements metodos<Filtro>{
         ArrayList<Filtro> all = new ArrayList();
         Statement s;
         ResultSet rs;
+
         try {
             s = con.getCnx().prepareStatement(SQL_READALL);
             rs = s.executeQuery(SQL_READALL);
-            while(rs.next()){
-                all.add( new Filtro(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4), rs.getInt(5),rs.getString(6), rs.getBoolean(6)));
+
+            while (rs.next()) {
+                all.add(new Filtro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getString(6) ,rs.getBoolean(7)));
             }
             rs.close();
         } catch (SQLException ex) {
-           Logger.getLogger(FiltroDao.class.getName()).log(Level.SEVERE, null, ex); 
-        } finally {
-            con.cerrarConexion();
+            Logger.getLogger(FiltroDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return all;
     }
+
 }
